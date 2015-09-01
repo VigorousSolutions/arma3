@@ -3,6 +3,19 @@ hint "test for framework hardlink successful, its actually a shortcut! C: drive 
 };
 
 
+
+gooncorp_carrier_men = {
+if (local player) then {
+player setpos [(getpos pad1 select 0), (getpos pad1 select 1) + random 2, 18.2];};
+
+};
+
+gooncorp_delayedheal = {
+sleep 10;
+(_this select 0) setdammage 0;
+
+};
+
 gooncorp_testfunction = {
 
 
@@ -23,18 +36,41 @@ private ["_logic", "_pos", "_dir"];
 _logic = _this select 0;
 _pos = getpos _logic;
 _dir = getdir _logic;
+_p = 0;
+private ["_p"];
+private ["_veh"];
+private ["_pos"];
 
 _parts = [
-	"Land_LHD_house_1",	"Land_LHD_house_2",	"Land_LHD_elev_R",
+	"Land_LHD_house_1",	"Land_LHD_house_2",	
 	"Land_LHD_1",	"Land_LHD_2",	"Land_LHD_3",
-	"Land_LHD_4",	"Land_LHD_5",	"Land_LHD_6"
+	"Land_LHD_4",	"Land_LHD_5",	"Land_LHD_6","Land_LHD_elev_R"
 ];
 
+
+
 {
-	_veh = _x createvehicle _pos;
+
+_veh = _x createvehicle _pos;
+
 	_veh setdir _dir;
 	_veh setpos _pos;
+
+_p = _p + 1;	
+
 } foreach _parts;
+
+
+
+
+
+_logic setpos [(getpos _logic) select 0, (getpos _logic select 1) - 100, 0];
+
+
+_pos = getpos _logic;
+_dir = getdir _logic;
+
+
 
 systemChat "LHD initilized";
 //deletevehicle _logic;
@@ -66,7 +102,7 @@ _deathradius = 70;
 				_slight1 setlightBrightness 55.4;
 				_slight1 setlightAmbient[1, 1, 1];
 				_slight1 setlightColor[1, 1, .9];
-				
+
 			   _color = [1, 1, 1];
 			   _obj = (vehicle player);
 			   _pos = [lastpos select 0, lastpos select 1, 5];
@@ -87,7 +123,7 @@ _color = [.13, .2, .4];
                _ps3 setParticleRandom [3, [25 + (random 1), 25 + (random 1), 2], [random 2, random 2, 0], 1, 0, [0, 0, 0, 4], 0, 0];
                _ps3 setParticleCircle [0.1, [0, 0, 0]];
                _ps3 setDropInterval 0.01;
-               
+
 _color = [1, 1, 1];
 _alpha = 0.31 ;
                _ps4 = "#particlesource" createVehicleLocal _pos;  // this is fire i think yellow
@@ -95,7 +131,7 @@ _alpha = 0.31 ;
                _ps4 setParticleRandom [3, [5 + (random 1), 4 + (random 1), 7], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
                _ps4 setParticleCircle [0.1, [0, 0, 0]];
                _ps4 setDropInterval 0.022;
- 
+
 _alpha = 0.35 ;
                _ps7 = "#particlesource" createVehicleLocal _pos;  //this is fire i think red
                _ps7 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 12, 0], "", "Billboard", 1, 1 + random 1, [5, 5, 4], _velocity, 1, 1.1, 1, 0, [.5 + (random .5)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
@@ -106,21 +142,21 @@ _alpha = 0.35 ;
 
 _alpha = 0.15 ;
 
-               _ps8 = "#particlesource" createVehicleLocal _pos;  
+               _ps8 = "#particlesource" createVehicleLocal _pos;
                _ps8 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 3, 0], "", "Billboard", 1, 2 + random 4, [5, 5, 10], _velocity, 1, 1, 1, 1, [.01 + (random .01)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", 1];
                _ps8 setParticleRandom [0, [15 + (random 15), 15 + (random 15), 15 + random 15], [25, 25, 53], 14, 3, [0, 0, 0, 12], 1, 0];
                _ps8 setParticleCircle [0.1, [5, 5, 5]];
                _ps8 setDropInterval 0.2;
 
 _alpha = 0.08 ;
-               _ps10 = "#particlesource" createVehicleLocal _pos;  
+               _ps10 = "#particlesource" createVehicleLocal _pos;
                _ps10 setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract",1,0,1], "", "Billboard", 1, 3, [1, 1, 1], _velocity, 1, 1, 1, 1, [.1 + (random .1)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", 1];
                _ps10 setParticleRandom [0, [5, 5, 5], [25, 25, 53], 14, 3, [0, 0, 0, 0], 1, 0];
                _ps10 setParticleCircle [0.1, [5, 5, 5]];
                _ps10 setDropInterval .1;
 
                _color = [1, 1, .9];
-               _ps9 = "#particlesource" createVehicleLocal _pos;  
+               _ps9 = "#particlesource" createVehicleLocal _pos;
                _ps9 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 5, 0], "", "Billboard", 1, 15, [5, 5, 2], _velocity, 1, 1.4, 0, 0, [.03 + (random .04)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", 1];
                _ps9 setParticleRandom [0, [1 + (random 1), 4 + (random 1), 5 + random 5], [8, 8, 19], 14, 3, [0, 0, 0, 22], 1, 0];
                _ps9 setParticleCircle [0.1, [5, 5, 5]];
@@ -134,7 +170,7 @@ _x = 0;
 _brightness = 55.4;
 while {_x < 50} do {
 _brightness = _brightness - 1;
-_slight1 setlightBrightness _brightness;	
+_slight1 setlightBrightness _brightness;
 sleep .01;
 _x = _x + 1;
 };
@@ -235,6 +271,105 @@ deletevehicle _slight6;
 
 
 
+// sorry this script is so messy i did not feel like formatting it
+// enjoy
+
+gooncorp_nuke = {
+
+
+
+
+_oldpos = (_this select 0);
+_damageradius = 1240;
+_deathradius = 550;
+
+
+setaperture 14;
+
+
+				_slight6 = "#lightpoint" createVehicleLocal [ (_oldpos select 0) + 50, (_oldpos select 1) - 50, 60];
+				_slight6 setlightBrightness 114.4;
+				_slight6 setlightAmbient[.3, .2, 0];
+				_slight6 setlightColor[.3, .2, 0];
+
+
+				_slight6a = "#lightpoint" createVehicleLocal [ _oldpos select 0, (_oldpos select 1) + 50, 60];
+				_slight6a setlightBrightness 34.4;
+				_slight6a setlightAmbient[.3, .2, 0];
+				_slight6a setlightColor[.3, .2, 0];
+
+
+				_slight6b = "#lightpoint" createVehicleLocal [ (_oldpos select 0) - 50, (_oldpos select 1) - 50, 60];
+				_slight6b setlightBrightness 64.4;
+				_slight6b setlightAmbient[.3, .2, 0];
+				_slight6b setlightColor[.3, .2, 0];
+
+
+
+
+
+
+
+
+
+				_slight1bbb = "#lightpoint" createVehicleLocal [(_this select 0) select 0, (_this select 0) select 1, 50];
+				_slight1bbb setlightBrightness 2400;
+				_slight1bbb setlightAmbient[.93, .90, 1];
+				_slight1bbb setlightColor[.93, .90, 1];
+
+
+
+
+				
+				_handle = [_slight1bbb] spawn {
+
+						_brightness = 2400;
+						_x = 0;
+						while {_x < 100} do {
+						(_this select 0) setpos [(getpos (_this select 0) select 0), (getpos (_this select 0) select 1), (_x * .9)];
+						_brightness = _brightness - 24;
+						(_this select 0) setlightBrightness _brightness;
+						sleep .01;
+						_x = _x + 1;
+						};
+
+						deletevehicle (_this select 0);
+					};
+
+
+
+
+
+
+
+
+
+
+
+
+				_slight1 = "#lightpoint" createVehicleLocal [(_this select 0) select 0, (_this select 0) select 1, 50];
+				_slight1 setlightBrightness 600;
+				_slight1 setlightAmbient[1, .9, .7];
+				_slight1 setlightColor[1, .9, .7];
+
+
+
+
+				
+				_handle = [_slight1] spawn {
+
+						_brightness = 600;
+						_x = 0;
+						while {_x < 600} do {
+						(_this select 0) setpos [(getpos (_this select 0) select 0), (getpos (_this select 0) select 1), (_x * .77)];
+						_brightness = _brightness - 1;
+						(_this select 0) setlightBrightness _brightness;
+						sleep .01;
+						_x = _x + 1;
+						};
+
+						deletevehicle (_this select 0);
+					};
 
 
 
@@ -252,6 +387,573 @@ deletevehicle _slight6;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				_slight1z = "#lightpoint" createVehicleLocal [(_this select 0) select 0, (_this select 0) select 1, 50];
+				_slight1z setlightBrightness 300;
+				_slight1z setlightAmbient[1, 1, .8];
+				_slight1z setlightColor[1, 1, .8];
+		
+
+				sleep .05;
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			   _color = [1, 1, 1];
+			   _obj = (vehicle player);
+			   _pos = _oldpos;
+               //--- Dust
+                       setwind [0.401112*2,0.204166*2,false];
+               _velocity = wind;
+               _color = [.1, .1, .1];
+               _alpha = 0.97 + random 0.12;
+               _ps2 = "#particlesource" createVehicleLocal _pos;  // this is black smoke
+               _ps2 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 25, [0, 0, 0], _velocity, 25, 1.58, 1.15, 0, [85 + (random 25)], [_color + [0], 		_color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps2 setParticleRandom [3, [4 + (random 10), 4 + (random 10), 1 + random 1], [125, 125, 25], 1, 0, [0, 0, 0, 0.2], 0, 0];
+               _ps2 setParticleCircle [0.1, [0, 0, 0]];
+               _ps2 setDropInterval 0.01;
+
+
+
+
+
+
+
+               _ps2b = "#particlesource" createVehicleLocal _pos;  // this is black smoke
+               _ps2b setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 6, 0], "", "Billboard", 1, 55, [0, 0, 0], _velocity, 25, 1.39, 1.15, 0, [85 + (random 25)], [_color + [0], 		_color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps2b setParticleRandom [3, [245, 245, 35], [2, 2, 4], 1, 0, [0, 0, 0, .2], 0, 0];
+               _ps2b setParticleCircle [0.1, [0, 0, 0]];
+               _ps2b setDropInterval 0.15;
+		_alpha = 0.17 + random 0.12;
+		_color = [.13, .13, .06];
+
+
+               _ps3 = "#particlesource" createVehicleLocal _pos;  // this is gray white smoke  balls of smoke
+               _ps3 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 9, 8, 0], "", "Billboard", 1, 75, [0, 0, 25], _velocity, 45, 1.11, 1,0, [35 + (random 13)], [_color + [0], _color 		+ [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps3 setParticleRandom [0, [85 + (random 1), 85 + (random 1), 2], [.5, .5, 2], 1, 1, [0, 0, 0, 1.1], 0, 0];
+               _ps3 setParticleCircle [0.1, [0, 0, 0]];
+               _ps3 setDropInterval 0.01;
+_slight6 attachto [_ps3, [0, 0, 15]];
+
+
+
+               _ps38 = "#particlesource" createVehicleLocal _pos;  // column of smoke
+               _ps38 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 9, 8, 0], "", "Billboard", 1, 75, [0, 0, 25], _velocity, 45, 1.11, 1,0, [45 + (random 13)], [_color + [0], _color 		+ [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps38 setParticleRandom [0, [15 + (random 1), 15 + (random 1), 5], [.2, .2, 2], 1, 1, [0, 0, 0, 1.4], 0, 0];
+               _ps38 setParticleCircle [0.1, [0, 0, 0]];
+               _ps38 setDropInterval 0.04;
+_slight6 attachto [_ps3, [0, 0, 15]];
+
+
+
+               _ps31 = "#particlesource" createVehicleLocal _pos;  // fire
+               _ps31 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 8, 0], "", "Billboard", 1, 27, [0, 0, 25], _velocity, 5, 1.11, 1, 0.01, [25 + (random 13)], [_color + [0], _color 		+ [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps31 setParticleRandom [0, [25 + (random 1), 25 + (random 1), 2], [.5, .5, 2], 1, 1, [0, 0, 0, 1], 0, 0];
+               _ps31 setParticleCircle [0.1, [0, 0, 0]];
+               _ps31 setDropInterval 0.02;
+_slight6 attachto [_ps3, [0, 0, 15]];
+
+
+               _ps22 = "#particlesource" createVehicleLocal _pos;  // dust
+               _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 9, 14, 0], "", "Billboard", 1, 25, [0, 0, 0], _velocity, 25, 1.7, 1, .05, [25 + (random 13)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps22 setParticleRandom [0, [185 + (random 1), 185 + (random 1), 2], [1, 1, 125], .1, .2, [0, 0, 0, .01], 0, 0];
+               _ps22 setParticleCircle [0.1, [0, 0, 0]];
+               _ps22 setDropInterval 0.001;
+
+
+
+               _ps23 = "#particlesource" createVehicleLocal _pos;  // this is gray white smoke  balls of smoke
+               _ps23 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1, 0], "", "Billboard", 1, 2, [0, 0, 25], _velocity, 1, 1.32, 1.15, 0, [145 + (random 13)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps23 setParticleRandom [0, [45 + (random 1), 45 + (random 1), 24], [1, 1, 1], .1, .2, [0, 0, 0, .8], 0, 0];
+               _ps23 setParticleCircle [0.1, [0, 0, 0]];
+               _ps23 setDropInterval 0.1;
+
+		_color = [1, 1, 1];
+		_alpha = 0.11 ;
+               _ps4 = "#particlesource" createVehicleLocal _pos;  // residual fire
+               _ps4 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 1, 9, 0], "", "Billboard", 1, 6, [0, 0, 0], _velocity, 1, 1.12, 1, 0, [1], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps4 setParticleRandom [0, [15 + (random 1), 15, 3], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
+               _ps4 setParticleCircle [0.1, [0, 0, 0]];
+               _ps4 setDropInterval 0.04;
+
+
+
+_alpha = 0.15 ;
+
+               _ps14 = "#particlesource" createVehicleLocal _pos;  //sparks
+               _ps14 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 12, 0], "", "Billboard", 1, 16, [5, 5, 15], _velocity, 1, 1.22, 1, 0,[.06], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps14 setParticleRandom [0, [1 + (random 1), 1, 3], [25, 25, 34], 14, 3, [0, 0, 0, .1], 1, 0];
+               _ps14 setParticleCircle [0.1, [0, 0, 0]];
+               _ps14 setDropInterval 0.0002;
+
+
+		_alpha = 0.15 ;
+
+
+
+		_alpha = 0.25 ;
+               _ps10 = "#particlesource" createVehicleLocal _pos;
+               _ps10 setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract",1,0,1], "", "Billboard", 1, 13, [1, 1, 25], _velocity, 1, 1.22, 1, 0, [25], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps10 setParticleRandom [0, [125, 125, 35], [1, 1, 1], 14, 3, [0, 0, 0, 0], 1, 0];
+               _ps10 setParticleCircle [0.1, [5, 5, 5]];
+               _ps10 setDropInterval .02;
+		_alpha = 0.1 ;
+               _color = [1, 1, .9];
+
+
+sleep .8;
+
+
+_color = [1, 1, 0];
+_velocity = [10, 10, 35];
+sleep .6;
+setaperture 20;
+
+sleep .1;
+deletevehicle _slight6;
+
+
+
+
+
+deletevehicle _ps14;
+deletevehicle _ps31;
+deletevehicle _ps22;
+
+sleep 2;
+//deletevehicle _slight1;
+deletevehicle _ps2;
+_handle = [ player distance _oldpos ] spawn {sleep ((_this select 0) * .0019); playsound "nukesound";player setvelocity [random 3,random 4,5];[4, 1] call BIS_fnc_earthquake;};
+
+sleep .4;
+deletevehicle _ps23;
+
+
+_x = 0;
+_brightness = 111.4;
+
+
+				_slight7 = "#lightpoint" createVehicleLocal [ _oldpos select 0, _oldpos select 1, 200];
+				_slight7 setlightBrightness 50.4;
+				_slight7 setlightAmbient[.3, .2, 0];
+				_slight7 setlightColor[.3, .2, 0];
+
+deletevehicle _ps3;
+sleep 1;
+_num = 0;
+private ["_num"];
+sleep 2;
+
+_units = nearestobjects [_pos, ["Wreck","House", "Wall"], 340];
+{
+
+_ps4 setpos getpos _x;
+if (random 1 < .2) then {
+
+_ps4 setpos _pos;
+	};
+if (isserver) then {
+
+if (isplayer _x) then 
+	{
+	if (_x distance _pos < _deathradius) then 
+		{
+		_x setdammage 2 + (getdammage _x);
+		};
+if (_x distance _pos < _damageradius) then {
+	_x setdammage .2 + (getdammage _x);};
+} else {
+_num = _num + 1;
+if (_num == 10) then {
+_num = 0;
+_x setdammage 2;} else {
+deletecollection _x;
+};
+};
+
+};
+
+} foreach _units;
+
+sleep 2;
+deletevehicle  _slight1z;
+
+
+
+deletevehicle _slight7;
+
+				_slight8 = "#lightpoint" createVehicleLocal [ _oldpos select 0, _oldpos select 1, 21];
+				_slight8 setlightBrightness 30.4;
+				_slight8 setlightAmbient[.3, .2, 0];
+				_slight8 setlightColor[.3, .2, 0];
+
+sleep 2;
+
+deletevehicle _ps38;
+sleep 14;
+
+sleep 2;
+
+
+
+// end of beggining part
+/// start loop
+_p = 0;
+while {_p < 5} do {
+_units = nearestobjects [_pos, ["All", "", "House", "Wall"], 340];
+{
+
+_ps4 setpos getpos _x;
+if (random 1 < .2) then {
+
+_ps4 setpos _pos;
+	};
+if (isserver) then {
+if (_x distance _pos < _deathradius) then {
+	_x setdammage 2 + (getdammage _x);
+	};
+if (_x distance _pos < _damageradius) then {
+	_x setdammage .2 + (getdammage _x);
+};
+};
+sleep .3;
+} foreach _units;
+sleep 30;
+_p = _p + 1;
+};
+/// end loop
+
+deletevehicle _ps10;
+deletevehicle _ps2b;
+sleep 16;
+// end part
+deletevehicle _ps2;
+sleep 5;
+
+sleep 10;
+
+
+
+deletevehicle _ps4;
+sleep 15;
+deletevehicle _slight8;
+deletevehicle _slight6a;
+deletevehicle _slight6b;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gooncorp_oldnuke = {
+
+
+
+
+_oldpos = (_this select 0);
+_damageradius = 540;
+_deathradius = 350;
+
+
+
+
+
+				_slight6 = "#lightpoint" createVehicleLocal [ _oldpos select 0, _oldpos select 1, 30];
+				_slight6 setlightBrightness 25.4;
+				_slight6 setlightAmbient[.3, .2, 0];
+				_slight6 setlightColor[.3, .2, 0];
+
+				_slight1 = "#lightpoint" createVehicleLocal [_oldpos select 0, _oldpos select 1, 30];
+				_slight1 setlightBrightness 700.4;
+				_slight1 setlightAmbient[1, 1, 1];
+				_slight1 setlightColor[1, 1, .9];
+
+			   _color = [1, 1, 1];
+			   _obj = (vehicle player);
+			   _pos = _oldpos;
+               //--- Dust
+                       setwind [0.401112*2,0.204166*2,false];
+               _velocity = wind;
+               _color = [.1, .1, .1];
+               _alpha = 0.97 + random 0.12;
+               _ps2 = "#particlesource" createVehicleLocal _pos;  // this is black smoke
+               _ps2 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 25, [0, 0, 0], _velocity, 25, 1.54, 1.15, 0, [85 + (random 25)], [_color + [0], 		_color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps2 setParticleRandom [3, [4 + (random 10), 4 + (random 10), 1 + random 1], [125, 125, 25], 1, 0, [0, 0, 0, 0.2], 0, 0];
+               _ps2 setParticleCircle [0.1, [0, 0, 0]];
+               _ps2 setDropInterval 0.01;
+
+
+
+
+
+
+
+               _ps2b = "#particlesource" createVehicleLocal _pos;  // this is black smoke
+               _ps2b setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 6, 0], "", "Billboard", 1, 55, [0, 0, 0], _velocity, 25, 1.39, 1.15, 0, [85 + (random 25)], [_color + [0], 		_color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps2b setParticleRandom [3, [245, 245, 35], [2, 2, 4], 1, 0, [0, 0, 0, .2], 0, 0];
+               _ps2b setParticleCircle [0.1, [0, 0, 0]];
+               _ps2b setDropInterval 0.15;
+		_alpha = 0.17 + random 0.12;
+		_color = [.13, .13, .06];
+
+
+               _ps3 = "#particlesource" createVehicleLocal _pos;  // this is gray white smoke  balls of smoke
+               _ps3 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 9, 8, 0], "", "Billboard", 1, 75, [0, 0, 25], _velocity, 45, 1.11, 1,0, [15 + (random 13)], [_color + [0], _color 		+ [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps3 setParticleRandom [0, [25 + (random 1), 25 + (random 1), 2], [.5, .5, 2], 1, 1, [0, 0, 0, 2], 0, 0];
+               _ps3 setParticleCircle [0.1, [0, 0, 0]];
+               _ps3 setDropInterval 0.01;
+_slight6 attachto [_ps3, [0, 0, 15]];
+
+
+
+               _ps31 = "#particlesource" createVehicleLocal _pos;  // fire
+               _ps31 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 8, 0], "", "Billboard", 1, 27, [0, 0, 25], _velocity, 45, 1.13, 1, 0, [15 + (random 13)], [_color + [0], _color 		+ [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps31 setParticleRandom [0, [25 + (random 1), 25 + (random 1), 2], [.5, .5, 2], 1, 1, [0, 0, 0, 5], 0, 0];
+               _ps31 setParticleCircle [0.1, [0, 0, 0]];
+               _ps31 setDropInterval 0.02;
+_slight6 attachto [_ps3, [0, 0, 15]];
+
+
+               _ps22 = "#particlesource" createVehicleLocal _pos;  // this is gray white smoke  balls of smoke
+               _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 11, 2, 0], "", "Billboard", 1, 8, [0, 0, 25], _velocity, 1, 1.22, 1, 0, [25 + (random 13)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps22 setParticleRandom [0, [25 + (random 1), 25 + (random 1), 2], [1, 1, 15], .1, .2, [0, 0, 0, 2], 0, 0];
+               _ps22 setParticleCircle [0.1, [0, 0, 0]];
+               _ps22 setDropInterval 0.01;
+
+
+
+               _ps23 = "#particlesource" createVehicleLocal _pos;  // this is gray white smoke  balls of smoke
+               _ps23 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1, 0], "", "Billboard", 1, 2, [0, 0, 25], _velocity, 1, 1.32, 1.15, 0, [145 + (random 13)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps23 setParticleRandom [0, [45 + (random 1), 45 + (random 1), 24], [1, 1, 1], .1, .2, [0, 0, 0, .8], 0, 0];
+               _ps23 setParticleCircle [0.1, [0, 0, 0]];
+               _ps23 setDropInterval 0.1;
+
+		_color = [1, 1, 1];
+		_alpha = 0.11 ;
+               _ps4 = "#particlesource" createVehicleLocal _pos;  // residual fire
+               _ps4 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 1, 9, 0], "", "Billboard", 1, 6, [0, 0, 0], _velocity, 1, 1.12, 1, 0, [1], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps4 setParticleRandom [0, [15 + (random 1), 15, 3], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
+               _ps4 setParticleCircle [0.1, [0, 0, 0]];
+               _ps4 setDropInterval 0.04;
+
+
+
+_alpha = 0.15 ;
+
+               _ps14 = "#particlesource" createVehicleLocal _pos;  //sparks
+               _ps14 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 12, 0], "", "Billboard", 1, 16, [5, 5, 15], _velocity, 1, 1.22, 1, 0,[.1], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps14 setParticleRandom [0, [1 + (random 1), 1, 3], [25, 25, 34], 14, 3, [0, 0, 0, .1], 1, 0];
+               _ps14 setParticleCircle [0.1, [0, 0, 0]];
+               _ps14 setDropInterval 0.001;
+
+
+		_alpha = 0.15 ;
+
+
+
+		_alpha = 0.25 ;
+               _ps10 = "#particlesource" createVehicleLocal _pos;
+               _ps10 setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract",1,0,1], "", "Billboard", 1, 13, [1, 1, 25], _velocity, 1, 1.22, 1, 0, [1], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
+               _ps10 setParticleRandom [0, [15, 15, 15], [1, 1, 1], 14, 3, [0, 0, 0, 0], 1, 0];
+               _ps10 setParticleCircle [0.1, [5, 5, 5]];
+               _ps10 setDropInterval .04;
+		_alpha = 0.1 ;
+               _color = [1, 1, .9];
+
+
+sleep .8;
+
+
+_color = [1, 1, 0];
+_velocity = [10, 10, 35];
+sleep .6;
+
+
+sleep .1;
+
+
+
+deletevehicle _ps14;
+deletevehicle _ps31;
+deletevehicle _ps22;
+
+sleep 2;
+
+deletevehicle _ps2;
+_handle = [ player distance _oldpos ] spawn {player setvelocity [random 3,random 4,5];sleep ((_this select 0) * .0019); playsound "nukesound";player setvelocity [random 3,random 4,5];[1, 1] call BIS_fnc_earthquake;};
+
+sleep .4;
+deletevehicle _ps23;
+
+
+_x = 0;
+_brightness = 111.4;
+
+
+deletevehicle _ps3;
+sleep 1;
+
+sleep 2;
+_units = nearestobjects [_pos, ["All", "", "House", "Wall"], 340];
+{
+
+_ps4 setpos getpos _x;
+if (random 1 < .2) then {
+
+_ps4 setpos _pos;
+	};
+if (isserver) then {
+if (_x distance _pos < _deathradius) then {
+	_x setdammage 2 + (getdammage _x);
+	};
+if (_x distance _pos < _damageradius) then {
+	_x setdammage .2 + (getdammage _x);
+};
+};
+sleep .1;
+} foreach _units;
+
+sleep 2;
+deletevehicle _slight1;
+
+
+
+sleep 18;
+
+
+
+// end of beggining part
+/// start loop
+_p = 0;
+while {_p < 5} do {
+_units = nearestobjects [_pos, ["All", "", "House", "Wall"], 340];
+{
+
+_ps4 setpos getpos _x;
+if (random 1 < .2) then {
+
+_ps4 setpos _pos;
+	};
+if (isserver) then {
+if (_x distance _pos < _deathradius) then {
+	_x setdammage 2 + (getdammage _x);
+	};
+if (_x distance _pos < _damageradius) then {
+	_x setdammage .2 + (getdammage _x);
+};
+};
+sleep .3;
+} foreach _units;
+sleep 30;
+_p = _p + 1;
+};
+/// end loop
+deletevehicle _ps10;
+deletevehicle _ps2b;
+sleep 16;
+// end part
+deletevehicle _ps2;
+sleep 5;
+
+sleep 10;
+deletevehicle _ps4;
+sleep 15;
+deletevehicle _slight6;
+};
 
 
 
@@ -287,7 +989,7 @@ _deathradius = 70;
 				_slight1 setlightBrightness 55.4;
 				_slight1 setlightAmbient[1, 1, 1];
 				_slight1 setlightColor[1, 1, .9];
-				
+
 			   _color = [1, 1, 1];
 			   _obj = (vehicle player);
 			   _pos = [lastpos select 0, lastpos select 1, 5];
@@ -308,7 +1010,7 @@ _color = [.13, .2, .06];
                _ps3 setParticleRandom [3, [25 + (random 1), 25 + (random 1), 2], [random 2, random 2, 0], 1, 1, [0, 0, 0, 4], 0, 0];
                _ps3 setParticleCircle [0.1, [0, 0, 0]];
                _ps3 setDropInterval 0.01;
-               
+
 _color = [1, 1, 1];
 _alpha = 0.31 ;
                _ps4 = "#particlesource" createVehicleLocal _pos;  // this is fire i think yellow
@@ -316,7 +1018,7 @@ _alpha = 0.31 ;
                _ps4 setParticleRandom [3, [5 + (random 1), 4 + (random 1), 7], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
                _ps4 setParticleCircle [0.1, [0, 0, 0]];
                _ps4 setDropInterval 0.022;
- 
+
 _alpha = 0.35 ;
                _ps7 = "#particlesource" createVehicleLocal _pos;  //this is fire i think red
                _ps7 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 12, 0], "", "Billboard", 1, 1 + random 1, [5, 5, 4], _velocity, 1, 1.1, 1, 0, [.5 + (random .5)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
@@ -330,14 +1032,14 @@ _alpha = 0.15 ;
 
 
 _alpha = 0.25 ;
-               _ps10 = "#particlesource" createVehicleLocal _pos;  
+               _ps10 = "#particlesource" createVehicleLocal _pos;
                _ps10 setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract",1,0,1], "", "Billboard", 1, 3, [1, 1, 1], _velocity, 1, 1.3, 1, 1, [2 + (random 7)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", 1];
                _ps10 setParticleRandom [0, [5, 5, 5], [1, 1, 1], 14, 3, [0, 0, 0, 0], 1, 0];
                _ps10 setParticleCircle [0.1, [5, 5, 5]];
                _ps10 setDropInterval .1;
 _alpha = 0.1 ;
                _color = [1, 1, .9];
-               _ps9 = "#particlesource" createVehicleLocal _pos;  
+               _ps9 = "#particlesource" createVehicleLocal _pos;
                _ps9 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 5, 0], "", "Billboard", 1, 16, [0, 0, 1], _velocity, 1, 1.52,1, 0, [.007 + (random .02)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", 1];
                _ps9 setParticleRandom [0, [1 + (random 1), 4 + (random 1), 5 + random 5], [.2, .2, 4], 14, 3, [0, 0, 0, 22], 1, 0];
                _ps9 setParticleCircle [0.1, [5, 5, 5]];
@@ -351,7 +1053,7 @@ _x = 0;
 _brightness = 55.4;
 while {_x < 50} do {
 _brightness = _brightness - 1;
-_slight1 setlightBrightness _brightness;	
+_slight1 setlightBrightness _brightness;
 sleep .01;
 _x = _x + 1;
 };
@@ -409,7 +1111,13 @@ deletevehicle _slight6;
 
 
 
+gooncorp_heliheal = {
+sleep 21;
+hint "healing helis";
+heli1 setdammage 0;
+heli2 setdammage 0;
 
+};
 
 
 
@@ -560,7 +1268,7 @@ _x move position (_this select 0);
 
 };
 
-gooncorp_straightenbuildings = {	
+gooncorp_straightenbuildings = {
 if (!isnil "center") then {
 areaobjects = nearestObjects [center, [], 1200];
 {
@@ -570,7 +1278,7 @@ _x setVectorUp [0,0,1];
 };
 
 
-gooncorp_destroygrass = {	
+gooncorp_destroygrass = {
 hint "destroying grass!";
 if (!isnil "center") then {
 _areaobjects2 = nearestObjects [center, [], 1200];
@@ -836,11 +1544,11 @@ _pHandler = (findDisplay 46) displayAddEventHandler ["keydown", "
 	if ((_this select 1) in [0x20] && (_this select 2) && (_this select 3) ) then
 	{
 	call gooncorp_debugging_toggle;
-	};	
+	};
 	if ((_this select 1) in [0x3B] && (_this select 2) && (_this select 3)) then
 	{
 	call gooncorp_debugging_helpmenu;
-	};	
+	};
 		if ((_this select 1) in [0x1F] && (_this select 2) && (_this select 3)) then
 	{
 	call gooncorp_specate;
@@ -920,7 +1628,7 @@ player globalchat "Take cold steel!";};
 if (rNum == 3) then {
 player globalchat "Your life has ended.";};
 	strangler = player;
-	victim = _x;		
+	victim = _x;
 	myscore = score player;
 	myscore = myscore + 1;
 	publicvariable "strangler";
@@ -928,9 +1636,9 @@ player globalchat "Your life has ended.";};
 	publicvariable "myscore";
 	sleep .27;
 	//[{
-	//},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;	
+	//},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 	[{
-//victim say3d "Splat";		
+//victim say3d "Splat";
 strangler switchmove "AwopPercMstpSgthWpstDnon_Part4";
 strangler attachto [victim, [0, -.7, 0]];
 sleep .1;
@@ -945,18 +1653,18 @@ if (player distance chuck <150) then {
                magracity = [0,0,.1];
                color = [.5, 0, 0];
                alpha = .7;
-               ps11 = "#particlesource" createVehicleLocal pos;  
+               ps11 = "#particlesource" createVehicleLocal pos;
                ps11 setParticleParams [["\Ca\Data\ParticleEffects\Universal\universal.p3d", 16, 4, 12], "", "Billboard", 1, 2, [0, 0, .6], wind, 1, 2, 1, 0, [.004 + (random .02)], [color + [0], color + [alpha], color + [0]], [1000], 1, 1, "", "", obj];
                ps11 setParticleRandom [.1, [0, 0, 1], [random 1, random 1, 1.5], 1, 0, [0, 0, .2, 1.1], 0, 1];
                ps11 setParticleCircle [0, [0, 0, 0]];
-               ps11 setDropInterval .01;		
+               ps11 setDropInterval .01;
 	victim switchmove "c5efe_AlexDeath";
 	sleep .9;
 	strangler switchmove "";
 	detach strangler;
 	ps11 setpos getpos victim;
 	strangler addscore 1;
-	sleep .2;	
+	sleep .2;
 victim setdammage 2;
 deletevehicle ps11;
 	},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
@@ -1001,7 +1709,7 @@ gooncorp_tvt_scoresimple =
 		};
 		if (enemyCount < (_this select 0) && !ended) then {
 		ended = true;
-		[{_handle = ["end3"] spawn gooncorp_warriorending_win;},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;	
+		[{_handle = ["end3"] spawn gooncorp_warriorending_win;},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 		};
 	sleep 10;
 	};
@@ -1029,7 +1737,7 @@ gooncorp_coop_scoresimple =
 		};
 		if (enemyCount < (_this select 0) && !ended) then {
 		ended = true;
-		[{_handle = ["end2"] spawn gooncorp_warriorending_win;},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;	
+		[{_handle = ["end2"] spawn gooncorp_warriorending_win;},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 		};
 	sleep 10;
 	if (random 1 < .2) then {
@@ -1054,7 +1762,7 @@ if (side _x == west && alive _x) then {
 totalBlufor = totalBlufor + 1;
 };
 } foreach allunits;
-hintsilent format ["GOONCORP DEBUGGING: \n \n pos:%1 \n  magazine count : %2 \n all units: %3 \n total blufor count: %4 \n total opfor count: %5 \n time: %6 \n damage taken: %7 \n classname: %8 \n faction: %9 \n group count: %10", position player, 
+hintsilent format ["GOONCORP DEBUGGING: \n \n pos:%1 \n  magazine count : %2 \n all units: %3 \n total blufor count: %4 \n total opfor count: %5 \n time: %6 \n damage taken: %7 \n classname: %8 \n faction: %9 \n group count: %10", position player,
 count magazines player, count allunits, totalBlufor, totalOpfor, time, damage player, typeof player, side player, count units (group player)];
 sleep 4;
 };
@@ -1100,13 +1808,13 @@ if ((_this select 0) == "forward") then {
 _vehicle = (_this select 1);
 _vel = velocity _vehicle;
 _dir = direction _vehicle;
-_speed = 4; 
+_speed = 4;
 _vehicle setVelocity [	(_vel select 0) + (sin _dir * _speed), 	(_vel select 1) + (cos _dir * _speed), 	(_vel select 2)];};
 if ((_this select 0) == "backward") then {
 _vehicle = (_this select 1);
 _vel = velocity _vehicle;
 _dir = direction _vehicle;
-_speed = -3; 
+_speed = -3;
 _vehicle setVelocity [	(_vel select 0) + (sin _dir * _speed), 	(_vel select 1) + (cos _dir * _speed), 	(_vel select 2)];};
 sleep 5;
 movingalready = false;
@@ -1277,7 +1985,7 @@ _biz = ((floor random count _tmp) + (floor random 4));
 _spot = (_tmp select _biz);
 _x setpos _spot;
 //_x disableAI "MOVE";
-[_x]  join grpnull; 
+[_x]  join grpnull;
 _x setdir (random 360);
 };
 } foreach units (group buildingai1);
@@ -1288,31 +1996,31 @@ gooncorp_fog1 = {//particles looks like great sandstorm start
 
 
 [] spawn {
-        
-        
+
+
         while {true} do {
-		
+
 
 			   _obj = (vehicle player);
 			   _pos = getposASL _obj;
- 
+
                //--- Dust
                        setwind [0.401112*2,0.204166*2,false];
                _velocity = wind;
                _color = [.13, .2, .4];
                _alpha = 0.05 + random 0.52;
-               _ps22 = "#particlesource" createVehicleLocal _pos;  
+               _ps22 = "#particlesource" createVehicleLocal _pos;
                _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 24, [0, 0, 10], _velocity, 1, 1.275, 1, 0, [25 + (random 181)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", _obj];
                _ps22 setParticleRandom [3, [500 + (random 10), 500 + (random 10), 45 + random 35], [random 2, random 2, 0], 1, 0, [0, 0, 0, 0.01], 0, 0];
                _ps22 setParticleCircle [0.1, [0, 0, 0]];
                _ps22 setDropInterval 0.008;
- 
+
                sleep 1 + (random 2);
-             
+
                _delay = 6 + random 16;
                sleep _delay;
                  deletevehicle _ps22;
- 
+
         };
 };
 
@@ -1324,31 +2032,31 @@ gooncorp_fog3 = {//particles fallout fog
 
 
 [] spawn {
-        
-        
+
+
         while {true} do {
-		
+
 
 			   _obj = (vehicle player);
 			   _pos = getposASL _obj;
- 
+
                //--- Dust
                        setwind [0.401112*2,0.204166*2,false];
                _velocity = wind;
                _color = [.13, .3, .2];
                _alpha = 0.25 + random 0.12;
-               _ps22 = "#particlesource" createVehicleLocal _pos;  
+               _ps22 = "#particlesource" createVehicleLocal _pos;
                _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 24, [0, 0, 0], _velocity, 25, 1.275, 1, 0, [5 + (random 45)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 0, "", "", _obj];
                _ps22 setParticleRandom [3, [200 + (random 10), 200 + (random 10), .1 + random 5], [random 2, random 2, 0], 1, 0, [0, 0, 0, 0.01], 0, 0];
                _ps22 setParticleCircle [0.1, [0, 0, 0]];
                _ps22 setDropInterval 0.008;
- 
+
                sleep 1 + (random 2);
-             
+
                _delay = 6 + random 16;
                sleep _delay;
                  deletevehicle _ps22;
- 
+
         };
 };
 
@@ -1419,8 +2127,8 @@ gooncorp_fog = {//particles
 
 
 [] spawn {
-        
-        
+
+
         while {true} do {
 		if (((getposATL player) select 2) < 200) then {
 		_obj = (vehicle player);
@@ -1430,12 +2138,12 @@ gooncorp_fog = {//particles
                _velocity = wind;
                _color = [.38, .33, .2];
                _alpha = 0.55 + random 0.12;
-               _ps22 = "#particlesource" createVehicleLocal _pos;  
+               _ps22 = "#particlesource" createVehicleLocal _pos;
                _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 30, [0, 0, 0], _velocity, (_n * 12), 1.275, 1, 1, [75 + (random 46)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", _obj];
                _ps22 setParticleRandom [3, [400 + (random 8), 400 + (random 10), 75], [2, 2, 0], 1, 0, [0, 0, 0, 0.01], 0, 0];
                _ps22 setParticleCircle [0.1, [0, 0, 0]];
-               _ps22 setDropInterval 0.019; 
-	       
+               _ps22 setDropInterval 0.019;
+
                _delay = 15 + (random 5);
                sleep _delay;
 
@@ -1456,8 +2164,8 @@ gooncorp_fog_parameterized = {//particles
 
 theColor = (_this select 0);
 [] spawn {
-        
-        
+
+
         while {true} do {
           if (((getposATL player) select 2) < 200) then {
           _obj = (vehicle player);
@@ -1467,12 +2175,12 @@ theColor = (_this select 0);
                _velocity = wind;
                _color = theColor;
                _alpha = 0.55 + random 0.12;
-               _ps22 = "#particlesource" createVehicleLocal _pos;  
+               _ps22 = "#particlesource" createVehicleLocal _pos;
                _ps22 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0], "", "Billboard", 1, 45, [0, 0, 0], _velocity, (_n * 2), 1.275, 1, 1, [75 + (random 46)], [_color + [0], _color + [_alpha], _color + [0]], [1000], 1, 1, "", "", _obj];
                _ps22 setParticleRandom [3, [400 + (random 8), 400 + (random 10), 75], [2, 2, 0], 1, 0, [0, 0, 0, 0.01], 0, 0];
                _ps22 setParticleCircle [0.1, [0, 0, 0]];
-               _ps22 setDropInterval 0.019; 
-            
+               _ps22 setDropInterval 0.019;
+
                _delay = 15 + (random 5);
                sleep _delay;
 
@@ -1794,9 +2502,9 @@ _damage;
 gooncorp_aitextures = {
 {
 if (side _x == east) then {
-_x setObjectTexture [0,(_this select 0)]; 
-_x setObjectTexture [1,(_this select 0)]; 
-_x setObjectTexture [2,(_this select 0)]; 
+_x setObjectTexture [0,(_this select 0)];
+_x setObjectTexture [1,(_this select 0)];
+_x setObjectTexture [2,(_this select 0)];
 };
 } foreach allunits;
 };
@@ -1824,7 +2532,7 @@ _x setObjectTexture [0,(_this select 0)]; };
 if (_val == 1) then {
 _x setObjectTexture [0,(_this select 1)]; };
 if (_val == 2) then {
-_x setObjectTexture [0,(_this select 2)]; 
+_x setObjectTexture [0,(_this select 2)];
 _x setface "WhiteHead_04";};
 if (_val == 3) then {
 _x setObjectTexture [0,(_this select 3)]; };
@@ -1836,12 +2544,12 @@ if (_val == 4) then {};
 gooncorp_playertextures = {
 {
 if (side _x == west) then {
-_x setObjectTexture [0,"textures\vietnam_marines_goon.paa"]; 
-_x setObjectTexture [1,"textures\vietnam_marines_goon.paa"]; 
-_x setObjectTexture [2,"textures\vietnam_marines_goon.paa"]; 
-_x setObjectTexture [3,"textures\vietnam_marines_goon.paa"]; 
-_x setObjectTexture [4,"textures\vietnam_marines_goon.paa"]; 
-_x setObjectTexture [5,"textures\vietnam_marines_goon.paa"]; 
+_x setObjectTexture [0,"textures\vietnam_marines_goon.paa"];
+_x setObjectTexture [1,"textures\vietnam_marines_goon.paa"];
+_x setObjectTexture [2,"textures\vietnam_marines_goon.paa"];
+_x setObjectTexture [3,"textures\vietnam_marines_goon.paa"];
+_x setObjectTexture [4,"textures\vietnam_marines_goon.paa"];
+_x setObjectTexture [5,"textures\vietnam_marines_goon.paa"];
 };
 } foreach allunits;
 };
@@ -1849,12 +2557,12 @@ _x setObjectTexture [5,"textures\vietnam_marines_goon.paa"];
 gooncorp_playertextures_specific = {
 {
 if (side _x == west) then {
-_x setObjectTexture [0,(_this select 0)]; 
-_x setObjectTexture [1,(_this select 0)]; 
-_x setObjectTexture [2,(_this select 0)]; 
-_x setObjectTexture [3,(_this select 0)]; 
-_x setObjectTexture [4,(_this select 0)]; 
-_x setObjectTexture [5,(_this select 0)]; 
+_x setObjectTexture [0,(_this select 0)];
+_x setObjectTexture [1,(_this select 0)];
+_x setObjectTexture [2,(_this select 0)];
+_x setObjectTexture [3,(_this select 0)];
+_x setObjectTexture [4,(_this select 0)];
+_x setObjectTexture [5,(_this select 0)];
 };
 } foreach allunits;
 };
@@ -2003,5 +2711,3 @@ sleep .2;
 _txt5 = _text + _txt4;
 titleCut [_txt5,"Black Faded",25];
 };
-
-
